@@ -10,4 +10,4 @@ File naming convention: name of file is the date the 538 riddler was posted. Fil
 
 CURRENTLY WORKING ON:
 - Understanding how to 'vectorize' solutions better (I get stuck in 'loop' thinking too often)
-- Mixing up data.frame, data.table, or tidy/dplyr approaches to storing data
+- Mixing up data.frame, data.table, or tidy/dplyr approaches for manipulating data
