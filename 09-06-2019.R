@@ -22,7 +22,7 @@ library(tictoc)
 
 #user inputs
 set.seed(6)
-n <- 10e3
+n <- 1e6
 
 
 #===========================================================================
@@ -66,5 +66,46 @@ toc()
 
 #able to run 1 million rounds worth in ~ 7 seconds
 #my win percent is somewhere around 57%, probably greater than 50% due to first round advantage
+
+
+#===========================================================================
+# revisiting function to output info
+#===========================================================================
+
+acchi_muite_hoi_revised <- function() {
+    round <- 1
+    winner <- ""
+    
+    while(winner == "") {
+        my_dir <- sample(1:4, 1, replace = TRUE)
+        opp_dir <- sample(1:4, 1, replace = TRUE)
+        
+        if(my_dir == opp_dir) {
+            #game over - assign winner
+            ifelse(round %% 2 == 0, winner <- "Opponent", winner <- "Me")
+        } else {
+            round <- round + 1 #game continues on another round!
+        }
+    }
+    
+    #output vector
+    return(c(winner, round))
+}
+
+#===========================================================================
+# build results table and vizualize
+#===========================================================================
+
+tic()
+tbl <- c()
+tbl <- replicate(n, rbind(tbl, acchi_muite_hoi_revised())) #makes big vector of results
+tbl <- as.data.frame(matrix(tbl, ncol = 2, byrow = TRUE), stringsAsFactors = FALSE) #turns vector into dataframe
+names(tbl) <- c("winner", "rounds")
+tbl$rounds <- as.numeric(tbl$rounds)
+toc()
+#running 1M games took 38 seconds
+
+
+
 
 
