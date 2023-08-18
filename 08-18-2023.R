@@ -34,7 +34,7 @@ sim_inning <- function(hitters) {
         } else {
             if(hitters[current_batter] == .1) {
                 #home run!
-                runs <- runs + sum(bases)
+                runs <- runs + sum(bases) + 1
                 bases <- c(0,0,0)
             } else {
                 #single
